@@ -186,14 +186,14 @@ package main
 
 import %q
 
-var `+printerToggleName+` = true
+var `+printerToggleName+` = 1
 
 func TogglePrinter() {
-	`+printerToggleName+` ^= true
+	`+printerToggleName+` ^= 1
 }
 
 func `+printerName+`(xx ...interface{}) {
-	if `+printerToggleName+` {
+	if `+printerToggleName+` == 1 {
 		for _, x := range xx {
 			%s
 		}
