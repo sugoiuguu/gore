@@ -46,6 +46,7 @@ import (
 
 const version = "0.3.0"
 const printerName = "__gore_p"
+const printerToggleName = "__gore_p_toggle"
 
 var (
 	flagAutoImport = flag.Bool("autoimport", false, "formats and adjusts imports automatically")
@@ -185,9 +186,17 @@ package main
 
 import %q
 
-func ` + printerName + `(xx ...interface{}) {
-	for _, x := range xx {
-		%s
+var `+printerToggleName+` = true
+
+func TogglePrinter() {
+	`+printerToggleName+` ^= true
+}
+
+func `+printerName+`(xx ...interface{}) {
+	if `+printerToggleName+` {
+		for _, x := range xx {
+			%s
+		}
 	}
 }
 
